@@ -1,0 +1,13 @@
+function employees(input) {
+    let employeeName = '';
+    let personalNum = 0;
+    let obj = {};
+
+    for (each of input) {
+        obj = {
+            employeeName: each,
+            personalNum: each.length
+        };
+        console.log(`Name: ${Object.values(obj)[0]} -- Personal Number: ${Object.values(obj)[1]}`);
+    }
+}
