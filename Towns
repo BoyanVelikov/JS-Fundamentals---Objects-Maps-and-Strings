@@ -1,0 +1,24 @@
+function towns(input) {
+    let initialJSON = [];
+    let obj = {
+        town: "",
+        latitude: "",
+        longitude: ""
+    };
+
+    for (each of input) {
+        initialJSON.push(each.split(" | "));
+    }
+
+    for (each of initialJSON) {
+        each[1] = Number(each[1]);
+        each[1] = each[1].toFixed(2);
+        each[2] = Number(each[2]);
+        each[2] = each[2].toFixed(2);
+        obj.town = each[0];
+        obj.latitude = each[1];
+        obj.longitude = each[2];
+
+        console.log(obj);
+    }
+}
