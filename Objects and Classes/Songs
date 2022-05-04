@@ -1,0 +1,21 @@
+function songs(input) {
+    class Song {
+        constructor(typeList, name, duration) {
+            this.typeList = typeList;
+            this.name = name;
+            this.duration = duration;
+        }
+    }
+    let obj = {};
+    let songsCount = input[0];
+    let songsTypeList = input[songsCount + 1];
+    input.shift();
+    for (i = 0; i < input.length - 1; i++) {
+        let arr = input[i].split("_");
+        if (arr[0] === songsTypeList || songsTypeList === "all") {
+            let obj = new Song(arr[0], arr[1], arr[2]);
+            console.log(obj.name);
+        }
+        let obj = {};
+    }
+}
