@@ -1,6 +1,0 @@
-function city(input) {
-    let object = input;
-    for (key of Object.keys(object)) {
-        console.log(`${key} -> ${object[key]}`);
-    }
-}
