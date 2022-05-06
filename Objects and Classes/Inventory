@@ -1,0 +1,31 @@
+function inventory(input) {
+    let arr = [];
+    let finalArr = [];
+    for (each of input) {
+        arr.push(each.split(" / "));
+    }
+
+    class Inv {
+        constructor(Hero, level, items) {
+            this.Hero = Hero;
+            this.level = level;
+            this.items = items;
+        }
+    }
+
+    for (line of arr) {
+        let obj = new Inv(line[0], line[1], line[2]);
+        finalArr.push(obj);
+    }
+
+    finalArr.sort((a, b) => a.level - b.level);
+    for (i = 0; i < finalArr.length; i++) {
+        let z = finalArr[i];
+        let arrM = z.items.split(", ");
+        arrM.sort((a, b) => a.localeCompare(b));
+        z.items = arrM;
+        console.log(`Hero: ${z.Hero}`);
+        console.log(`level => ${z.level}`);
+        console.log(`items => ${z.items.join(", ")}`);
+    }
+}
