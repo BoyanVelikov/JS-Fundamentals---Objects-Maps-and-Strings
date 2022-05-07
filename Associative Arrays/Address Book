@@ -1,0 +1,13 @@
+function addressBook(input) {
+    let assocArr = {};
+
+    for (let each of input) {
+        [key, value] = each.split(":");
+        assocArr[key] = value;
+    }
+    let entries = Object.entries(assocArr);
+    let sorted = entries.sort((a, b) => a[0].localeCompare(b[0]));
+    for (each of sorted) {
+        console.log(`${each[0]} -> ${each[1]}`);
+    }
+}
