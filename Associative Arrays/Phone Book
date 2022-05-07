@@ -1,0 +1,12 @@
+function phoneBook(input) {
+    let assocArr = {};
+    let doubleNames = [];
+    for (i = 0; i < input.length; i++) {
+        let arr = input[i].split(" ");
+        let z = arr[0];
+        assocArr[z] = arr[1];
+    }
+    for (key in assocArr) {
+        console.log(key + " -> " + assocArr[key]);
+    }
+}
