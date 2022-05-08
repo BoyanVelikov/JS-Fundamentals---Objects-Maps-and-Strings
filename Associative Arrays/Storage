@@ -1,0 +1,16 @@
+function storage(input) {
+    let warehouse = new Map();
+    for (each of input) {
+        let arr = each.split(" ");
+        arr[1] = Number(arr[1]);
+        if (!warehouse.has(arr[0])) {
+            warehouse.set(arr[0], arr[1]);
+        } else {
+            let real = arr[1] + warehouse.get(arr[0]);
+            warehouse.set(arr[0], real);
+        }
+    }
+    for ([key, value] of warehouse) {
+        console.log(`${key} -> ${value}`);
+    }
+}
