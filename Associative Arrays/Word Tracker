@@ -1,0 +1,25 @@
+function words(input) {
+    let searchedWords = input[0].split(" ");
+    let resultArray = {};
+    for (line of searchedWords) {
+        resultArray[line] = 0;
+    }
+    for (let key in resultArray) {
+        let count = 0;
+        for (i = 1; i < input.length; i++) {
+            if (input[i] === key) {
+                count += 1;
+                resultArray[key] = count;
+            }
+        }
+    }
+    for (let key in resultArray) {
+        let sorted = Object.entries(resultArray);
+        let finalResult = sorted.sort((a, b) => (b[1] - a[1]));
+    }
+
+    for (let line of finalResult) {
+        console.log(`${line[0]} - ${line[1]}`);
+    }
+
+}
