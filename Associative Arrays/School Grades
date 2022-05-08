@@ -1,0 +1,36 @@
+function grades(input) {
+    let schoolG = new Map();
+    let averageM = new Map();
+    for (let each of input) {
+        let arr = each.split(" ");
+        let student = arr[0];
+        arr.shift();
+        if (!schoolG.has(student)) {
+            var grades111 = arr.join(" ");
+            schoolG.set(student, grades111);
+        } else {
+            let x = schoolG.get(student);
+            let y = arr.join(" ");
+            let grades111 = x + " " + y;
+            schoolG.set(student, grades111);
+        }
+    }
+
+    for (let [key, value] of schoolG) {
+        let scores = Array.from(value.split(" "));
+        let total = 0;
+        for (i = 0; i < scores.length; i++) {
+            total += Number(scores[i]);
+        }
+        let average = total / scores.length;
+        averageM.set(key, average);
+    }
+    let sortedAverageM = Array.from(averageM).sort((a, b) => (a[1] - b[1]));
+
+    for (i = 0; i < schoolG.size; i++) {
+        let finalVar = sortedAverageM[i][0];
+        let finalVarVal = (schoolG.get(sortedAverageM[i][0])).split(" ");
+        console.log(`${finalVar}: ${finalVarVal.join(", ")}`);
+    }
+
+}
