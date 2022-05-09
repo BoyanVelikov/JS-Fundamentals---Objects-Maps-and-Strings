@@ -1,0 +1,23 @@
+function picolo(input) {
+    let parking = new Map();
+    let direction = '';
+    let licensePlate = '';
+    for (each of input) {
+        direction = each.split(", ")[0];
+        licensePlate = each.split(", ")[1];
+        if (direction === "IN" && !parking.has(licensePlate)) {
+            parking.set(licensePlate, direction);
+        } else if (direction === "OUT" && parking.has(licensePlate)) {
+            parking.delete(licensePlate);
+        }
+    }
+    let sorted = Array.from(parking.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+
+    if (sorted.length > 0) {
+        for (each of sorted) {
+            console.log(each[0]);
+        }
+    } else {
+        console.log("Parking Lot is Empty");
+    }
+}
