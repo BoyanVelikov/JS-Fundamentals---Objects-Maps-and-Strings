@@ -1,0 +1,25 @@
+function oddOccurences(input) {
+    let resultAA = new Map();
+    let finalResult = '';
+    let count = 1;
+    let inputArr = input.split(" ");
+    let inputArr2 = [];
+    for (each of inputArr) {
+        let eachNew = each.toLowerCase();
+        inputArr2.push(eachNew);
+    }
+
+    for (each of inputArr2) {
+        if (!resultAA.has(each)) {
+            resultAA.set(each, 1);
+        } else {
+            resultAA.set(each, (resultAA.get(each) + 1));
+        }
+    }
+
+    for (let [key, value] of resultAA) {
+        if (resultAA.get(key) % 2 > 0)
+            finalResult += ` ${key}`;
+    }
+    console.log(finalResult);
+}
