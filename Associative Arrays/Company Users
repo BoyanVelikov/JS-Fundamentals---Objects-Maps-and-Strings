@@ -1,0 +1,21 @@
+function companyUsers(input) {
+    let compUsers = new Map();
+    for (each of input) {
+        let company = each.split(" -> ");
+        if (!compUsers.has(company[0])) {
+            compUsers.set(company[0], [company[1]]);
+        } else {
+            if (!compUsers.get(company[0]).includes(company[1])) {
+                compUsers.get(company[0]).push(company[1]);
+            }
+        }
+    }
+    let arr = Array.from(compUsers.keys()).sort((a, b) => a.localeCompare(b));
+    for (each of arr) {
+        console.log(each);
+        for (value of compUsers.get(each)) {
+            console.log(`-- ${value}`);
+        }
+
+    }
+}
