@@ -1,0 +1,4 @@
+function substring(str, firstNumber, secondNumber) {
+  let sample = str.substr(firstNumber, secondNumber);
+  console.log(sample);
+}
