@@ -1,0 +1,10 @@
+function countStringOccurrences(text, str) {
+  let arr = text.split(" ");
+  let count = 0;
+  for (i = 0; i < text.length; i++) {
+    if (arr[i] === str) {
+      count++;
+    }
+  }
+  console.log(count);
+}
