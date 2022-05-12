@@ -1,0 +1,19 @@
+function revealWords(firstStr, secondStr) {
+  let arr = secondStr.split(" ");
+  let word = firstStr;
+  let arr2 = [];
+  if (word.includes(",")) {
+    arr2 = word.split(", ");
+  } else {
+    arr2.push(word);
+  }
+  for (each of arr2) {
+    for (i = 0; i < arr.length; i++) {
+      if (arr[i].includes("*") && arr[i].length == each.length) {
+        let wordLast = each;
+        arr[i] = wordLast;
+      }
+    }
+  }
+  console.log(arr.join(" "));
+}
