@@ -1,0 +1,28 @@
+function modernTimesOfHashTag(input) {
+    let arr = input.split(" ");
+    let arr2 = [];
+    let arr3 = [];
+    let count = 0;
+    for (each of arr) {
+        if (each.startsWith("#") && each.length > 1) {
+            each = each.substring(1);
+            arr2.push(each);
+        }
+    }
+    for (each of arr2) {
+        count = 0;
+        for (i = 0; i < each.length - 1; i++) {
+            if ((each.charCodeAt(i) < 97 || each.charCodeAt(i) > 122) && (each.charCodeAt(i) < 65 || each.charCodeAt(i) > 90)) {
+                count++;
+            }
+        }
+        if (count == 0) {
+            arr3.push(each);
+        }
+
+    }
+    
+    for (each of arr3) {
+        console.log(each);
+    }
+}
