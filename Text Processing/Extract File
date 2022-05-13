@@ -1,0 +1,28 @@
+function extractFile(input) {
+    let arrFileExtension = [];
+    let arrFileName = [];
+    let arr1 = input.split("");
+    for (i = arr1.length - 1; i > 0; i--) {
+        if (arr1[i] !== '.') {
+            arrFileExtension.push(arr1[i]);
+            arr1.pop();
+        } else {
+            arr1.pop();
+            break;
+        }
+    }
+    arrFileExtension.reverse();
+
+    for (i = arr1.length - 1; i > 0; i--) {
+        if (arr1[i] !== '\\') {
+            arrFileName.push(arr1[i]);
+            arr1.pop();
+        } else {
+            break;
+        }
+    }
+
+    arrFileName.reverse();
+    console.log(`File name: ${arrFileName.join("")}`);
+    console.log(`File extension: ${arrFileExtension.join("")}`);
+}
