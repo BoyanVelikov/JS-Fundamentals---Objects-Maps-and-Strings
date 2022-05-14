@@ -1,0 +1,11 @@
+function replaceRepeatingChars(input) {
+    let arr = input.split("");
+    let arr2 = [];
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i] !== arr[i + 1]) {
+            arr2.push(arr[i]);
+            // arr.splice(arr.indexOf(arr[i + 1]), 1);
+        }
+    }
+    console.log(arr2.join(""));
+}
