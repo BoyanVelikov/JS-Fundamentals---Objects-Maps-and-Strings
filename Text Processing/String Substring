@@ -1,0 +1,15 @@
+function stringSubstring(firstStr, secondStr) {
+    let searchedWord = firstStr.toLowerCase();
+    let arr = secondStr.split(" ");
+    let count = 0;
+    for (each of arr) {
+        if (each.toLowerCase() === searchedWord) {
+            console.log(searchedWord);
+            count++;
+            break;
+        }
+    }
+    if (count == 0) {
+        console.log(`${searchedWord} not found!`);
+    }
+}
