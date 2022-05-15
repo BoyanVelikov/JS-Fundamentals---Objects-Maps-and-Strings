@@ -1,0 +1,14 @@
+function cutAndReverse(input) {
+    let arr = input.split("");
+    let arrFirstHalf = [];
+    let arrSecondHalf = [];
+    let inputLength = input.length;
+    for (i = 0; i < (inputLength / 2); i++) {
+        arrFirstHalf.push(arr[i]);
+    }
+    for (i = inputLength / 2; i < inputLength; i++) {
+        arrSecondHalf.push(arr[i]);
+    }
+    console.log(arrFirstHalf.reverse().join(""));
+    console.log(arrSecondHalf.reverse().join(""));
+}
