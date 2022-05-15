@@ -1,0 +1,22 @@
+function splitter(input) {
+    let arrFirst = input.split("");
+    let arr = [];
+    let arr2 = [];
+    let inputLength = input.length;
+    arr.push(arrFirst.shift());
+    for (i = 0; i < inputLength; i++) {
+        let x = arrFirst[0];
+        if (x == undefined) {
+            arr2.push(arr.join(""));
+            break;
+        } else {
+            if (x.charCodeAt(0) >= 65 && x.charCodeAt(0) <= 90) {
+                arr2.push(arr.join(""));
+                arr = [];
+                arr.push(arrFirst.shift());
+            } else {
+                arr.push(arrFirst.shift());
+            }
+        }
+    }
+    console.log(arr2.join(", "));
