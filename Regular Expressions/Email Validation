@@ -1,0 +1,7 @@
+let email = "bobi@abv.bg, gogo@abv.bg";
+let pattern = /[A-Za-z0-9]+[@][A-Za-z]+[.][a-z]+/;
+let arr = email.split(", ");
+for (each of arr) {
+    let result = each.match(pattern);
+    console.log(result[0]);
+}
