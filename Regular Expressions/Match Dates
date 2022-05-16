@@ -1,0 +1,11 @@
+function matchDate(input) {
+    let regex = /\d{2}([\/.-])[A-Z][a-z]{2}\1\d{4}\b/g;
+    let validDates = [];
+    let name = null;
+    while ((name = regex.exec(input)) !== null) {
+        validDates.push(name[0]);
+    }
+    for (each of validDates) {
+        console.log(`Day: ${each[0] + each[1]}, Month: ${each[3] + each [4] + each[5]}, Year: ${each[7] + each [8] + each [9] + each[10]}`);
+    }
+}
