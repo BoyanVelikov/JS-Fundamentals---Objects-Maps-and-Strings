@@ -1,0 +1,23 @@
+function furniture(input) {
+    let input2 = [];
+    let furnitureType = [];
+    let totalMoneySpent = 0;
+    let regex = />>(\w+)<<(\d+\.\d+|\d+)!(\d+)/g;
+    let name = null;
+    for (each of input) {
+        if (each !== 'Purchase') {
+            input2.push(each);
+        } else {
+            break;
+        }
+    }
+    while ((name = regex.exec(input2)) !== null) {
+        furnitureType.push(name[1]);
+        totalMoneySpent += name[2] * name[3];
+    }
+    console.log("Bought furniture:");
+    for (each of furnitureType) {
+        console.log(each);
+    }
+    console.log(`Total money spent: ${totalMoneySpent.toFixed(2)}`);
+}
