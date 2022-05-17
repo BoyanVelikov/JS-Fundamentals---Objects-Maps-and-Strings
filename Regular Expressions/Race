@@ -1,0 +1,38 @@
+function race(input) {
+let racers = input.shift().split(", ");
+let obj = {};
+for (each of racers){
+    obj[each] = 0;
+}
+let regex = /[A-Za-z]/g;
+let regex2 = /\d/g;
+for (each of input){
+if (each === "end of race"){
+    break;
+} else {
+result2 = [];
+while ((result = regex.exec(each)) !== null){
+    result2.push(result);
+    }
+}
+name1 = result2.join("");
+if (obj.hasOwnProperty(name1)){
+        digit = null;
+        sum = 0;
+        while ((digit = regex2.exec(each)) !== null){
+        sum += Number(digit[0]);
+        }
+        obj[name1] += sum;
+
+}
+}
+let finalArr = Array.from(Object.entries(obj));
+let sorted = [];
+for (el of finalArr){
+    sorted = finalArr.sort((a, b) => (b[1] - a[1]));
+}
+
+console.log(`1st place: ${sorted[0][0]}`);
+console.log(`2nd place: ${sorted[1][0]}`);
+console.log(`3rd place: ${sorted[2][0]}`);
+}
