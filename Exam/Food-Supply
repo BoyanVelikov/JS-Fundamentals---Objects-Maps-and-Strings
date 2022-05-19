@@ -1,0 +1,32 @@
+function solution(input) {
+
+    let pattern = /(#|\|)(?<food>[A-Za-z\s]+)\1(?<date>[0-9]{2}\/[0-9]{2}\/[0-9]{2})\1(?<calories>[0-9]+)\1/g
+    let match = pattern.exec(input)
+
+    let totalCal = 0;
+
+    while (match) {
+
+        let calories = match.groups.calories;
+
+        totalCal += Number(calories);
+
+        match = pattern.exec(input);
+    }
+
+    console.log(`You have enough food for ${Math.trunc(totalCal/2000)} days!`);
+
+    let secondPattern = /(#|\|)(?<food>[A-Za-z\s]+)\1(?<date>[0-9]{2}\/[0-9]{2}\/[0-9]{2})\1(?<calories>[0-9]+)\1/g
+    let secondMatch = secondPattern.exec(input)
+    while (secondMatch) {
+
+        let food = secondMatch.groups.food;
+        let date = secondMatch.groups.date;
+        let calories = secondMatch.groups.calories;
+
+        secondMatch = secondPattern.exec(input)
+
+        console.log(`Item: ${food}, Best before: ${date}, Nutrition: ${calories}`);
+
+    }
+}
