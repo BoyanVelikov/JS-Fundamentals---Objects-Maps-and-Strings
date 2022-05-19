@@ -1,0 +1,77 @@
+function pirates(input) {
+    let fullData = new Map();
+    for (i = 0; i < input.length; i++) {
+        if (input[i] === "Sail") {
+            break;
+        } else {
+            let cityData = input[i].split("||");
+            let goldAndPeople = [];
+            goldAndPeople.push(Number(cityData[1]));
+            goldAndPeople.push(Number(cityData[2]));
+            if (fullData.has(cityData[0])) {
+                let xxx = fullData.get(cityData[0]);
+                let newGold1 = xxx[1] + Number(cityData[2]);
+                let newPeople1 = xxx[0] + Number(cityData[1])
+                fullData.set(cityData[0], [newPeople1, newGold1]);
+            } else {
+                fullData.set(cityData[0], goldAndPeople);
+            }
+        }
+    }
+    iNDEX = input.indexOf("Sail");
+    input = input.splice(iNDEX);
+    for (line of input) {
+        if (line !== "Sail") {
+            input.shift();
+        } else {
+            break;
+        }
+    }
+    for (each of input) {
+        if (each === "End") {
+            break;
+        } else {
+            let commandArr = each.split("=>");
+            if (commandArr[0] === "Plunder" && fullData.has(commandArr[1])) {
+                let a = fullData.get(commandArr[1]);
+                let differencePeople = a[0] - Number(commandArr[2]);
+                let differenceGold = a[1] - Number(commandArr[3]);
+                if (differenceGold > 0 && differencePeople > 0) {
+                    console.log(`${commandArr[1]} plundered! ${commandArr[3]} gold stolen, ${commandArr[2]} citizens killed.`);
+                    fullData.set(commandArr[1], ([differencePeople, differenceGold]));
+                } else {
+                    let people = fullData.get(commandArr[1])[0];
+                    if (people > commandArr[2]) {
+                        people = commandArr[2];
+                    }
+                    let gold = fullData.get(commandArr[1])[1];
+                    if (gold > commandArr[3]) {
+                        gold = commandArr[3];
+                    }
+                    console.log(`${commandArr[1]} plundered! ${gold} gold stolen, ${people} citizens killed.`);
+                    console.log(`${commandArr[1]} has been wiped off the map!`);
+                    fullData.delete(commandArr[1]);
+                }
+            } else if (commandArr[0] === "Prosper" && fullData.has(commandArr[1])) {
+                if (commandArr[2] <= 0) {
+                    console.log("Gold added cannot be a negative number!");
+                } else {
+                    let oldPeople = fullData.get(commandArr[1])[0];
+                    newGold = fullData.get(commandArr[1])[1] + Number(commandArr[2]);
+                    fullData.set(commandArr[1], [oldPeople, newGold]);
+                    console.log(`${commandArr[2]} gold added to the city treasury. ${commandArr[1]} now has ${newGold} gold.`)
+                }
+            }
+        }
+    }
+    if (fullData.size == 0) {
+        console.log(`Ahoy, Captain! All targets have been plundered and destroyed!`);
+    } else {
+        let arrLast = Array.from(fullData.entries());
+        let sorted = arrLast.sort((a, b) => b[1][1] - a[1][1] || a[0].localeCompare(b[0]));
+        console.log(`Ahoy, Captain! There are ${fullData.size} wealthy settlements to go to:`);
+        for (line of sorted) {
+            console.log(`${line[0]} -> Population: ${line[1][0]} citizens, Gold: ${line[1][1]} kg`);
+        }
+    }
+}
