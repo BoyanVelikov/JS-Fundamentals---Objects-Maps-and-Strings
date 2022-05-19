@@ -1,0 +1,50 @@
+function thePianist(number, input) {
+    let initialNumber = number;
+    let pieces = new Map();
+    for (i = 0; i < initialNumber; i++) {
+        let splittedPiece = input[i].split("|");
+        pieces.set(splittedPiece[0], [splittedPiece[1], splittedPiece[2]]);
+    }
+    for (i = initialNumber; i < input.length; i++) {
+        if (input[i] === "Stop") {
+            break;
+        } else {
+            let commandSplitted = input[i].split("|");
+            let command = commandSplitted[0];
+            let pieceName = commandSplitted[1];
+            let composer = commandSplitted[2];
+            let key777 = commandSplitted[3];
+            if (command === "Add") {
+                if (pieces.has(pieceName)) {
+                    console.log(`${pieceName} is already in the collection!`);
+                } else {
+                    pieces.set(pieceName, [composer, key777]);
+                    console.log(`${pieceName} by ${composer} in ${key777} added to the collection!`);
+                }
+            } else if (command === "Remove") {
+                if (pieces.has(pieceName)) {
+                    pieces.delete(pieceName);
+                    console.log(`Successfully removed ${pieceName}!`);
+                } else {
+                    console.log(`Invalid operation! ${pieceName} does not exist in the collection.`);
+                }
+            } else if (command === "ChangeKey") {
+                if (pieces.has(pieceName)) {
+                    key777 = commandSplitted[2];
+                    let midArr = pieces.get(pieceName);
+                    midArr[1] = key777;
+                    pieces.set(pieceName, midArr);
+                    console.log(`Changed the key of ${pieceName} to ${key777}!`);
+                } else {
+                    console.log(`Invalid operation! ${pieceName} does not exist in the collection.`);
+                }
+            }
+        }
+    }
+    let piecesArr = Array.from(pieces.entries());
+    let sorted = piecesArr.sort((a, b) => a[0].localeCompare(b[0]) || a[1][0].localeCompare(b[1][0]));
+    for (line of sorted) {
+        console.log(`${line[0]} -> Composer: ${line[1][0]}, Key: ${line[1][1]}`);
+    }
+
+}
