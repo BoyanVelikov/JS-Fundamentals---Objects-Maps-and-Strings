@@ -1,0 +1,49 @@
+function trip(travelDestinations, commands) {
+    if (commands.length > 0) {
+        let modifiedString = '';
+        let modifiedString1 = '';
+        let stringLength = travelDestinations.length;
+        for (each of commands) {
+            let firstArrSplitted = each.split(":");
+            if (firstArrSplitted[0] === "Travel") {
+
+                break;
+            } else if (firstArrSplitted[0] === "Add Stop") {
+
+                let indexAddStop = Number(firstArrSplitted[1]);
+                let addedDestination = firstArrSplitted[2];
+                stringLength = travelDestinations.length;
+                if (indexAddStop < stringLength && indexAddStop >= 0) {
+                    modifiedString = travelDestinations.slice(0, indexAddStop) + addedDestination + travelDestinations.slice(indexAddStop);
+                    travelDestinations = modifiedString;
+                    stringLength = travelDestinations.length;
+                }
+                console.log(travelDestinations);
+            } else if (firstArrSplitted[0] === "Remove Stop") {
+                indexOfRemoveStop1 = Number(firstArrSplitted[1]);
+                indexOfRemoveStop2 = Number(firstArrSplitted[2]);
+                stringLength = travelDestinations.length;
+                if ((indexOfRemoveStop1 < stringLength && indexOfRemoveStop1 >= 0) && (indexOfRemoveStop2 < stringLength && indexOfRemoveStop2 >= 0)) {
+                    modifiedString = travelDestinations.substr(0, indexOfRemoveStop1);
+                    modifiedString1 = travelDestinations.substr(indexOfRemoveStop2 + 1);
+                    travelDestinations = modifiedString + modifiedString1;
+                    stringLength = travelDestinations.length;
+                }
+                console.log(travelDestinations);
+            } else if (firstArrSplitted[0] === "Switch") {
+                let oldDestination = firstArrSplitted[1];
+                let newDestination = firstArrSplitted[2];
+                stringLength = travelDestinations.length;
+
+                if (travelDestinations.includes(oldDestination)) {
+                    travelDestinations = travelDestinations.split(oldDestination).join(newDestination);
+
+                }
+                console.log(travelDestinations);
+            }
+        }
+        console.log(`Ready for a world tour! Planned stops: ${travelDestinations}`);
+    } else {
+        console.log(`Ready for a world tour! Planned stops: ${travelDestinations}`);
+    }
+}
